@@ -1,0 +1,19 @@
+{
+    "name": "snappmarket/notifier-client",
+    "description": "A client package to use snappmarket notifier service.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alireza Jangi",
+            "email": "alireza.jangi@snapp.market"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {"Notifier\\": "src/"}
+    }
+}
