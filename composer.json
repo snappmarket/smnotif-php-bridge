@@ -1,5 +1,5 @@
 {
-    "name": "snappmarket/notifier-client",
+    "name": "snappmarket/smnotif-php-bridge",
     "description": "A client package to use snappmarket notifier service.",
     "license": "MIT",
     "authors": [
