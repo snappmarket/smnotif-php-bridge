@@ -8,11 +8,22 @@ use ReflectionObject;
 
 class NotifierApi
 {
-    const     PRODUCTION      = "production";
-    const     STAGE           = "stage";
-    const     TEST            = "test";
-    const     API_PATH        = "%s://notif.snapp.market/api/v%s/";
-    const     API_PATH_TEST   = "%s://notif.%s.snapp.market/api/v%s/";
+    const     PRODUCTION        = "production";
+    const     STAGE             = "stage";
+    const     TEST              = "test";
+    const     API_PATH          = "%s://notif.snapp.market/api/v%s/";
+    const     API_PATH_TEST     = "%s://notif.%s.snapp.market/api/v%s/";
+    const     SMS               = 'sms';
+    const     EMAIL             = 'email';
+    const     PUSH              = 'push';
+    const     ASYNC_MODE        = 'async';
+    const     SYNC_MODE         = 'sync';
+    const     BLOCKER_PRIORITY  = 'blocker';
+    const     HIGH_PRIORITY     = 'high';
+    const     MEDIUM_PRIORITY   = 'medium';
+    const     LOW_PRIORITY      = 'low';
+    const     DYNAMIC_STRUCTURE = 'dynamic';
+    const     STATIC_STRUCTURE  = 'static';
     protected $api_path;
     protected $api_key;
     protected $api_version;

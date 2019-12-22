@@ -13,24 +13,29 @@ require package inside your `package.json` file.
 
 ### Basic Usage To Send SMS Notification
 You can use it inside a raw php file or project or a php framework like Laravel or Symfony.
-#### 1- raw php file
 The `NotifierApi` class takes four parameters.
 - $api_key: The Api Key that your get from Notifier Service.
 - $api_version : The api version that you are using ex:1
 - $is_secure : if true call service with 'https' else calls with 'http'.
 - $app_env : The application environment that you are using (including `NotifierApi::PRODUCTION`, `NotifierApi::STAGE`, `NotifierApi::TEST`)
+#### 1- raw php file
 
 ```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
-$sms_notifier = new (\Notifier\NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,\Notifier\NotifierApi::PRODUCTION))->setType('test');
+$api_token = "Your API Token";
+$api_version = 1;
+$is_secure = true;
+$app_env = \Notifier\NotifierApi::PRODUCTION;
+$notifier = new \Notifier\NotifierApi($api_token,$api_version,$is_secure,$app_env);
+$sms_notifier = $notifier->setType(\Notifier\NotifierApi::SMS);
 try {
-    $response = $n->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
+    $response = $sms_notifier->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
         ->setExpireTime('1h 15m') // expires in 1 hour and 15 minutes
-        ->setMode('async') // send notification async or sync
-        ->setPriority('blocker') // priority : blocker, high, medium, low
+        ->setMode(\Notifier\NotifierApi::ASYNC_MODE) // send notification async or sync
+        ->setPriority(\Notifier\NotifierApi::BLOCKER_PRIORITY) // priority : blocker, high, medium, low
         ->setProviderCode('10002') // get sms provider codes from notification service
-        ->setSmsBodyStructure('dynamic') // static or dynamic?
+        ->setSmsBodyStructure(\Notifier\NotifierApi::DYNAMIC_STRUCTURE) // static or dynamic?
         ->setSmsBody('Hello {{name}}. Your discount is {{discount}}!!') // sms body (you can also use sms templates)
         ->setReceivers([
             [
@@ -58,14 +63,21 @@ try {
 #### 2- inside php class
 ```php
 use Notifier\NotifierApi;
-$sms_notifier = (new NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,NotifierApi::PRODUCTION))->setType('sms');
+
+
+$api_token = "Your API Token";
+$api_version = 1;
+$is_secure = true;
+$app_env = NotifierApi::PRODUCTION;
+$notifier = new NotifierApi($api_token,$api_version,$is_secure,$app_env);
+$sms_notifier = $notifier->setType(\Notifier\NotifierApi::SMS);
 try {
-    $response = $n->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
+    $response = $sms_notifier->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
         ->setExpireTime('1h 15m') // expires in 1 hour and 15 minutes
-        ->setMode('async') // send notification async or sync
-        ->setPriority('blocker') // priority : blocker, high, medium, low
+        ->setMode(NotifierApi::ASYNC_MODE) // send notification async or sync
+        ->setPriority(NotifierApi::BLOCKER_PRIORITY) // priority : blocker, high, medium, low
         ->setProviderCode('10002') // get sms provider codes from notification service
-        ->setSmsBodyStructure('dynamic') // static or dynamic?
+        ->setSmsBodyStructure(NotifierApi::DYNAMIC_STRUCTURE) // static or dynamic?
         ->setSmsBody('Hello {{name}}. Your discount is {{discount}}!!') // sms body (you can also use sms templates)
         ->setReceivers([
             [
