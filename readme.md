@@ -101,3 +101,5 @@ try {
     throw $e;
 }
 ```
+
+### Examples
