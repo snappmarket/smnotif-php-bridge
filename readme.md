@@ -23,7 +23,7 @@ The `NotifierApi` class takes four parameters.
 ```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
-$sms_notifier = new \Notifier\NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,\Notifier\NotifierApi::PRODUCTION);
+$sms_notifier = new (\Notifier\NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,\Notifier\NotifierApi::PRODUCTION))->setType('test');
 try {
     $response = $n->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
         ->setExpireTime('1h 15m') // expires in 1 hour and 15 minutes
@@ -58,7 +58,7 @@ try {
 #### 2- inside php class
 ```php
 use Notifier\NotifierApi;
-$sms_notifier = new NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,NotifierApi::PRODUCTION);
+$sms_notifier = (new NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,NotifierApi::PRODUCTION))->setType('sms');
 try {
     $response = $n->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
         ->setExpireTime('1h 15m') // expires in 1 hour and 15 minutes
