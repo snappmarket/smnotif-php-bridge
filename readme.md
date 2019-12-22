@@ -14,10 +14,10 @@ require package inside your `package.json` file.
 ### Basic Usage To Send SMS Notification
 You can use it inside a raw php file or project or a php framework like Laravel or Symfony.
 The `NotifierApi` class takes four parameters.
-- $api_key: The Api Key that your get from Notifier Service.
-- $api_version : The api version that you are using ex:1
-- $is_secure : if true call service with 'https' else calls with 'http'.
-- $app_env : The application environment that you are using (including `NotifierApi::PRODUCTION`, `NotifierApi::STAGE`, `NotifierApi::TEST`)
+- `$api_key` : The Api Key that your get from Notifier Service.
+- `$api_version` : The api version that you are using ex:1
+- `$is_secure` : if true call service with 'https' else calls with 'http'.
+- `$app_env` : The application environment that you are using (including `NotifierApi::PRODUCTION`, `NotifierApi::STAGE`, `NotifierApi::TEST`)
 #### 1- raw php file
 
 ```php
