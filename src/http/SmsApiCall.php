@@ -54,7 +54,7 @@ class SmsApiCall
             $params[] = ['name' => $key, 'contents' => $value];
         }
         try {
-            $response = $this->client->request('POST', 'http://local.me/api/v1/send/sms', [
+            $response = $this->client->request('POST', $this->url, [
                 'headers' => $this->headers,
                 'multipart' => $params,
             ]);
