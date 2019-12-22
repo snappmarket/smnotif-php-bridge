@@ -8,6 +8,7 @@
             "email": "alireza.jangi@snapp.market"
         }
     ],
+    "version": "v0.1.0",
     "require": {
         "php": "^7.2",
         "ext-json": "*",
