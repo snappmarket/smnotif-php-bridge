@@ -18,12 +18,12 @@ The `NotifierApi` class takes four parameters.
 - $api_key: The Api Key that your get from Notifier Service.
 - $api_version : The api version that you are using ex:1
 - $is_secure : if true call service with 'https' else calls with 'http'.
-- $app_env : The application envoirnment that you are using (including `NotifierApi::PRODUCTION`, `NotifierApi::STAGE`, `NotifierApi::TEST`)
+- $app_env : The application environment that you are using (including `NotifierApi::PRODUCTION`, `NotifierApi::STAGE`, `NotifierApi::TEST`)
 
 ```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
-$sms_notifgier = new \Notifier\NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,\Notifier\NotifierApi::PRODUCTION);
+$sms_notifier = new \Notifier\NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,\Notifier\NotifierApi::PRODUCTION);
 try {
     $response = $n->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
         ->setExpireTime('1h 15m') // expires in 1 hour and 15 minutes
@@ -54,4 +54,38 @@ try {
     throw $e;
 }
 ?>
+```
+#### 2- inside php class
+```php
+use Notifier\NotifierApi;
+$sms_notifier = new NotifierApi('5df0d20cd6b9c5df0d20cd6ba3',1,true,NotifierApi::PRODUCTION);
+try {
+    $response = $n->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
+        ->setExpireTime('1h 15m') // expires in 1 hour and 15 minutes
+        ->setMode('async') // send notification async or sync
+        ->setPriority('blocker') // priority : blocker, high, medium, low
+        ->setProviderCode('10002') // get sms provider codes from notification service
+        ->setSmsBodyStructure('dynamic') // static or dynamic?
+        ->setSmsBody('Hello {{name}}. Your discount is {{discount}}!!') // sms body (you can also use sms templates)
+        ->setReceivers([
+            [
+                'number' => "0939*******",
+                'sms_template_data' => [
+                    'name' => 'Alireza Jangi',
+                    'discount' => 45
+                ]
+            ],
+            [
+                'number' => "0937*******",
+                'sms_template_data' => [
+                    'name' => 'Another Name',
+                    'discount' => 77
+                ]
+            ]
+        ])
+        ->send();
+    die($response);
+} catch (Exception $e) {
+    throw $e;
+}
 ```
