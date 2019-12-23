@@ -64,7 +64,6 @@ try {
 ```php
 use Notifier\NotifierApi;
 
-
 $api_token = "Your API Token";
 $api_version = 1;
 $is_secure = true;
