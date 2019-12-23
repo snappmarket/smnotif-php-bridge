@@ -26,3 +26,20 @@ try {
  throw $exception;
 }
 ```
+
+### Get Your Sms Templates List
+```php
+use Notifier\NotifierApi;
+use Notifier\sms\SmsTemplate;
+
+$api_token = "Your API Token";
+$api_version = 1;
+$is_secure = true;
+$app_env = NotifierApi::PRODUCTION;
+$sms_template = new SmsTemplate($api_token,$api_version,$is_secure,$app_env);
+try {
+    $response = $sms_template->getTemplates();
+ }catch (\Exception $exception){
+ throw $exception;
+}
+```

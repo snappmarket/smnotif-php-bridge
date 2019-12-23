@@ -104,4 +104,9 @@ class SmsTemplate extends NotifierApi
     {
         return (new SmsApiCall($this->getApiPath().'sms/template','POST',['client-token'=>$this->getApiKey(),'content-type'=>'application/json'],json_encode($this->getPayload())))->execute();
     }
+
+    public function getTemplates()
+    {
+        return (new SmsApiCall($this->getApiPath().'sms/template','GET',['client-token'=>$this->getApiKey(),'content-type'=>'application/json'],json_encode($this->getPayload())))->execute();
+    }
 }
