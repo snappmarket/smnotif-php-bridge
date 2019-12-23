@@ -2,7 +2,7 @@
 
 ## SnappMarket Notification Service PHP Bridge
 This readme file helps you to create a new sms template or get your own sms templates registered before.
-### Register New Sms Template
+##### Register New Sms Template
 ```php
 use Notifier\NotifierApi;
 use Notifier\sms\SmsTemplate;
@@ -27,7 +27,7 @@ try {
 }
 ```
 
-### Get Your Sms Templates List
+##### Get Your Sms Templates List
 ```php
 use Notifier\NotifierApi;
 use Notifier\sms\SmsTemplate;

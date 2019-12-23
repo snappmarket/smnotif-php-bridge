@@ -54,7 +54,6 @@ try {
             ]
         ])
         ->send();
-    die($response);
 } catch (Exception $e) {
     throw $e;
 }
@@ -95,7 +94,6 @@ try {
             ]
         ])
         ->send();
-    die($response);
 } catch (Exception $e) {
     throw $e;
 }
