@@ -103,3 +103,4 @@ try {
 
 ### Examples
  - To register a new sms template check [Sms Template Examples](docs/SmsTemplate.md)
+ - More examples to send sms notifications [Send Sms Notifications Examples](docs/SendSmsExamples.md)
