@@ -4,7 +4,8 @@
 namespace Notifier;
 
 use Exception;
-use ReflectionObject;
+use Notifier\Exceptions\InvalidAppEnvException;
+use Notifier\Exceptions\InvalidNotifierTypeException;
 
 class NotifierApi
 {
@@ -110,13 +111,25 @@ class NotifierApi
         $this->secure = $secure;
     }
 
-    public function __construct(string $api_key,int $api_version,bool $secure=true,string $app_env=self::PRODUCTION)
+    /**
+     * NotifierApi constructor.
+     * @param string $api_key
+     * @param int $api_version
+     * @param bool $secure
+     * @param string $app_env
+     * @throws InvalidNotifierTypeException
+     */
+    public function __construct(string $api_key, int $api_version, bool $secure=true, string $app_env=self::PRODUCTION)
     {
         $this->setApiKey($api_key);
         $this->setApiVersion($api_version);
-        $this->setAppEnv($app_env);
         $this->setSecure($secure);
         $this->setApiPath($this->generateApiPath());
+        if (!in_array($app_env,[self::STAGE,self::TEST,self::PRODUCTION])){
+            throw new InvalidNotifierTypeException('Invalid notifier type passed.');
+        }else{
+            $this->setAppEnv($app_env);
+        }
     }
 
     /**
@@ -155,15 +168,15 @@ class NotifierApi
      * @throws Exception
      */
     public function setType(string $type){
-        $namespace = __NAMESPACE__.'\\'.strtolower($type);
-        $className = $namespace . '\\' . ucfirst($type).'Notifier';
+        $namespace = __NAMESPACE__.'\\'.ucfirst(strtolower($type));
+        $className = $namespace . '\\' . ucfirst(strtolower($type)).'Notifier';
         /**
          * @var NotifierInterface $className
          */
         if (class_exists($className)) {
             return new $className($this->getApiKey(),$this->getApiVersion(),$this->getSecure(),$this->getAppEnv());
         } else {
-            throw new Exception("Notifier class not found");
+            throw new InvalidNotifierTypeException("Notifier class not found");
         }
     }
 }

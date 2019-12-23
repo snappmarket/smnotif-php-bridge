@@ -23,13 +23,14 @@ The `NotifierApi` class takes four parameters.
 ```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
-$api_token = "Your API Token";
-$api_version = 1;
-$is_secure = true;
-$app_env = \Notifier\NotifierApi::PRODUCTION;
-$notifier = new \Notifier\NotifierApi($api_token,$api_version,$is_secure,$app_env);
-$sms_notifier = $notifier->setType(\Notifier\NotifierApi::SMS);
+
 try {
+    $api_token = "Your API Token";
+    $api_version = 1;
+    $is_secure = true;
+    $app_env = \Notifier\NotifierApi::PRODUCTION;
+    $notifier = new \Notifier\NotifierApi($api_token,$api_version,$is_secure,$app_env);
+    $sms_notifier = $notifier->setType(\Notifier\NotifierApi::SMS);
     $response = $sms_notifier->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
         ->setExpireTime('1h 15m') // expires in 1 hour and 15 minutes
         ->setMode(\Notifier\NotifierApi::ASYNC_MODE) // send notification async or sync
@@ -63,13 +64,13 @@ try {
 ```php
 use Notifier\NotifierApi;
 
-$api_token = "Your API Token";
-$api_version = 1;
-$is_secure = true;
-$app_env = NotifierApi::PRODUCTION;
-$notifier = new NotifierApi($api_token,$api_version,$is_secure,$app_env);
-$sms_notifier = $notifier->setType(\Notifier\NotifierApi::SMS);
 try {
+    $api_token = "Your API Token";
+    $api_version = 1;
+    $is_secure = true;
+    $app_env = NotifierApi::PRODUCTION;
+    $notifier = new NotifierApi($api_token,$api_version,$is_secure,$app_env);
+    $sms_notifier = $notifier->setType(\Notifier\NotifierApi::SMS);
     $response = $sms_notifier->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
         ->setExpireTime('1h 15m') // expires in 1 hour and 15 minutes
         ->setMode(NotifierApi::ASYNC_MODE) // send notification async or sync
@@ -102,3 +103,4 @@ try {
 ### Examples
  - To register a new sms template check [Sms Template Examples](docs/SmsTemplate.md)
  - More examples to send sms notifications [Send Sms Notifications Examples](docs/SendSmsExamples.md)
+ 

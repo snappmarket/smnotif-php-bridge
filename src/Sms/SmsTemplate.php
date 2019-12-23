@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Notifier\sms;
+namespace Notifier\Sms;
 
 
-use Notifier\http\SmsApiCall;
+use Notifier\Http\SmsApiCall;
 use Notifier\NotifierApi;
 
 class SmsTemplate extends NotifierApi
@@ -102,11 +102,19 @@ class SmsTemplate extends NotifierApi
 
     public function registerTemplate()
     {
-        return (new SmsApiCall($this->getApiPath().'sms/template','POST',['client-token'=>$this->getApiKey(),'content-type'=>'application/json'],json_encode($this->getPayload())))->execute();
+        $url = $this->getApiPath() . 'send/template';
+        $headers = ['client-token'=>$this->getApiKey(),'content-type'=>'application/json'];
+        $payload = json_encode($this->getPayload());
+        $api_call = new SmsApiCall($url, 'POST', $headers, $payload);
+        return $api_call->execute();
     }
 
     public function getTemplates()
     {
-        return (new SmsApiCall($this->getApiPath().'sms/template','GET',['client-token'=>$this->getApiKey(),'content-type'=>'application/json'],json_encode($this->getPayload())))->execute();
+        $url = $this->getApiPath() . 'send/template';
+        $headers = ['client-token'=>$this->getApiKey(),'content-type'=>'application/json'];
+        $payload = json_encode($this->getPayload());
+        $api_call = new SmsApiCall($url, 'GET', $headers, $payload);
+        return $api_call->execute();
     }
 }

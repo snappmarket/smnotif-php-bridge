@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Notifier\sms;
+namespace Notifier\Sms;
 
 
 interface SmsNotificationInterface

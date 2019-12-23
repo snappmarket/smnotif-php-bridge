@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Notifier\sms;
+namespace Notifier\Sms;
 
 
-use Notifier\http\SmsApiCall;
+use Notifier\Http\SmsApiCall;
 use Notifier\NotifierApi;
 use Notifier\NotifierInterface;
 
@@ -226,7 +226,7 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
      */
     public function getReceiversFile()
     {
-        return fopen($this->receivers_file,'r+');
+        return fopen($this->receivers_file, 'r+');
     }
 
     /**
@@ -244,9 +244,10 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
         parent::__construct($api_key, $api_version, $secure, $app_env);
     }
 
-    protected function getPayload(){
+    protected function getPayload()
+    {
         $extra = [];
-        if ($this->getSmsTemplateCode() !== null){
+        if ($this->getSmsTemplateCode() !== null) {
             $extra['sms_template_code'] = $this->getSmsTemplateCode();
         }
         $main = [
@@ -262,7 +263,7 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
             'start_from' => $this->getStartFrom(),
             'bypass_limit_control' => $this->getBypassLimitControl()
         ];
-        return array_merge($main,$extra);
+        return array_merge($main, $extra);
     }
 
     /**
@@ -270,19 +271,22 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
      */
     public function send()
     {
-       return (new SmsApiCall($this->getApiPath().'send/sms','POST',['client-token'=>$this->getApiKey(),'content-type'=>'application/json'],json_encode($this->getPayload())))->execute();
+        $url = $this->getApiPath() . 'send/sms';
+        $headers = ['client-token' => $this->getApiKey(), 'content-type' => 'application/json'];
+        $payload = json_encode($this->getPayload());
+        $api_call = new SmsApiCall($url, 'POST', $headers, $payload);
+        return $api_call->execute();
     }
+
     /**
      * @throws \Exception
      */
     public function sendByFile()
     {
-       return (new SmsApiCall($this->getApiPath().'send/sms','POST',['client-token'=>$this->getApiKey()],$this->getPayload()))->executeSendFile();
+        $url = $this->getApiPath() . 'send/sms/file';
+        $headers = ['client-token' => $this->getApiKey()];
+        $payload = $this->getPayload();
+        $api_call = new SmsApiCall($url, 'POST', $headers, $payload);
+        return $api_call->executeSendFile();
     }
-
-    public function registerTemplate()
-    {
-        return (new SmsApiCall($this->getApiPath().'sms/template','POST',['client-token'=>$this->getApiKey(),'content-type'=>'application/json'],json_encode($this->getPayload())))->execute();
-    }
-
 }
