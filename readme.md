@@ -103,3 +103,4 @@ try {
 ```
 
 ### Examples
+ - To register a new sms template check [Sms Template Examples](docs/SmsTemplate.md)

@@ -279,4 +279,10 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
     {
        return (new SmsApiCall($this->getApiPath().'send/sms','POST',['client-token'=>$this->getApiKey()],$this->getPayload()))->executeSendFile();
     }
+
+    public function registerTemplate()
+    {
+        return (new SmsApiCall($this->getApiPath().'sms/template','POST',['client-token'=>$this->getApiKey(),'content-type'=>'application/json'],json_encode($this->getPayload())))->execute();
+    }
+
 }
