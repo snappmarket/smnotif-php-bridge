@@ -6,7 +6,7 @@ This package developed to use <a href="https://snapp.market">SnappMarket</a> Not
 * TEST : [Test Documentations](https://notif.t.snapp.market/api/documentation)
 * STAGING : [STAGING Documentations](https://notif.s.snapp.market/api/documentation)
 * PRODUCTION : [PRODUCTION Documentations](https://notif.snapp.market/api/documentation)
-(note : Don't forget to Swagger-Token as request header. Value of Swagger-Token is the api key you can get it from notification service)
+(note : Don't forget to set Swagger-Token as request header. Value of Swagger-Token is the api key you can get it from Snappmarket Notifier Service)
 ### Requirements
 - `PHP >= 7.2.0`
 - `JSON PHP Extension`
