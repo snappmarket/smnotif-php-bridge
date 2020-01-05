@@ -1,5 +1,9 @@
 <p align="center"><a href="https://snapp.market" target="_blank"><img src="https://snapp.market/static/media/logo.d5ee94bf.png" width="200"></a></p>
-
+<p align="center">
+<a href="https://packagist.org/packages/snappmarket/smnotif-php-bridge"><img src="https://poser.pugx.org/snappmarket/smnotif-php-bridge/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/snappmarket/smnotif-php-bridge"><img src="https://poser.pugx.org/snappmarket/smnotif-php-bridge/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/snappmarket/smnotif-php-bridge"><img src="https://poser.pugx.org/snappmarket/smnotif-php-bridge/license.svg" alt="License"></a>
+</p>
 ## SnappMarket Notification Service PHP Bridge
 This package developed to use <a href="https://snapp.market">SnappMarket</a> Notification Service.
 #### To see full documentation check:
