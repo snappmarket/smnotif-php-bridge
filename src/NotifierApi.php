@@ -124,12 +124,12 @@ class NotifierApi
         $this->setApiKey($api_key);
         $this->setApiVersion($api_version);
         $this->setSecure($secure);
-        $this->setApiPath($this->generateApiPath());
         if (!in_array($app_env,[self::STAGE,self::TEST,self::PRODUCTION])){
             throw new InvalidNotifierTypeException('Invalid notifier type passed.');
         }else{
             $this->setAppEnv($app_env);
         }
+        $this->setApiPath($this->generateApiPath());
     }
 
     /**
