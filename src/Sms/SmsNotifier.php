@@ -226,7 +226,10 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
      */
     public function getReceiversFile()
     {
-        return fopen($this->receivers_file, 'r+');
+        if ($this->receivers_file)
+            return fopen($this->receivers_file, 'r+');
+        else
+            return null;
     }
 
     /**
