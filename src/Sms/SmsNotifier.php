@@ -242,8 +242,15 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
         return $this;
     }
 
-    public function __construct(string $api_key, int $api_version, bool $secure = true, string $app_env = self::PRODUCTION)
+    public function __construct(string $api_key, int $api_version, bool $secure = null, string $app_env = null)
     {
+        if ($secure === null) {
+            $secure = true;
+        }
+        if ($app_env === null) {
+            $app_env = self::PRODUCTION;
+        }
+
         parent::__construct($api_key, $api_version, $secure, $app_env);
     }
 
@@ -262,7 +269,7 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
             'provider_number' => $this->getProviderNumber(),
             'mode' => $this->getMode(),
             'sms_body_structure' => $this->getSmsBodyStructure(),
-            'sms_body' => $this->getSmsBody(),
+            'sms_body' => base64_encode($this->getSmsBody()),
             'start_from' => $this->getStartFrom(),
             'bypass_limit_control' => $this->getBypassLimitControl()
         ];

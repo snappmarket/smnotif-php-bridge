@@ -4,7 +4,6 @@
 namespace Notifier;
 
 use Exception;
-use Notifier\Exceptions\InvalidAppEnvException;
 use Notifier\Exceptions\InvalidNotifierTypeException;
 
 class NotifierApi
@@ -119,8 +118,15 @@ class NotifierApi
      * @param string $app_env
      * @throws InvalidNotifierTypeException
      */
-    public function __construct(string $api_key, int $api_version, bool $secure=true, string $app_env=self::PRODUCTION)
+    public function __construct(string $api_key, int $api_version, bool $secure = null, string $app_env = null)
     {
+        if ($secure === null) {
+            $secure = true;
+        }
+        if ($app_env === null) {
+            $app_env = self::PRODUCTION;
+        }
+
         $this->setApiKey($api_key);
         $this->setApiVersion($api_version);
         $this->setSecure($secure);
