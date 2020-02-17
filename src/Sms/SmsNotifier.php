@@ -262,7 +262,7 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
             'provider_number' => $this->getProviderNumber(),
             'mode' => $this->getMode(),
             'sms_body_structure' => $this->getSmsBodyStructure(),
-            'sms_body' => $this->getSmsBody(),
+            'sms_body' => base64_encode($this->getSmsBody()),
             'start_from' => $this->getStartFrom(),
             'bypass_limit_control' => $this->getBypassLimitControl()
         ];
