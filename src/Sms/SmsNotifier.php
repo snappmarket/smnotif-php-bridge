@@ -242,8 +242,15 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
         return $this;
     }
 
-    public function __construct(string $api_key, int $api_version, bool $secure = true, string $app_env = self::PRODUCTION)
+    public function __construct(string $api_key, int $api_version, bool $secure = null, string $app_env = null)
     {
+        if ($secure === null) {
+            $secure = true;
+        }
+        if ($app_env === null) {
+            $app_env = self::PRODUCTION;
+        }
+
         parent::__construct($api_key, $api_version, $secure, $app_env);
     }
 
