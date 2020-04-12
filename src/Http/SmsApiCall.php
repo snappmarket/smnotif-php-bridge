@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace Notifier\Http;
-
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -11,7 +10,13 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\TransferException;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
+/**
+ * Class SmsApiCall
+ * @package Notifier\Http
+ */
 class SmsApiCall
 {
     protected $url;
@@ -58,7 +63,7 @@ class SmsApiCall
     }
 
     /**
-     * @return \Psr\Http\Message\ResponseInterface|\Psr\Http\Message\StreamInterface|null
+     * @return ResponseInterface|StreamInterface|null
      */
     public function executeSendFile()
     {

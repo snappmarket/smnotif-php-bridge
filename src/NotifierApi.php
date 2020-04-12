@@ -1,29 +1,32 @@
 <?php
-
+declare(strict_types=1);
 
 namespace Notifier;
 
 use Exception;
 use Notifier\Exceptions\InvalidNotifierTypeException;
-
+/**
+ * Class NotifierApi
+ * @package Notifier
+ */
 class NotifierApi
 {
-    const     PRODUCTION        = "production";
-    const     STAGE             = "stage";
-    const     TEST              = "test";
-    const     API_PATH          = "%s://notif.snapp.market/api/v%s/";
-    const     API_PATH_TEST     = "%s://notif.%s.snapp.market/api/v%s/";
-    const     SMS               = 'sms';
-    const     EMAIL             = 'email';
-    const     PUSH              = 'push';
-    const     ASYNC_MODE        = 'async';
-    const     SYNC_MODE         = 'sync';
-    const     BLOCKER_PRIORITY  = 'blocker';
-    const     HIGH_PRIORITY     = 'high';
-    const     MEDIUM_PRIORITY   = 'medium';
-    const     LOW_PRIORITY      = 'low';
-    const     DYNAMIC_STRUCTURE = 'dynamic';
-    const     STATIC_STRUCTURE  = 'static';
+    public const    PRODUCTION        = "production";
+    public const    STAGE             = "stage";
+    public const    TEST              = "test";
+    public const    API_PATH          = "%s://notif.snapp.market/api/v%s/";
+    public const    API_PATH_TEST     = "%s://notif.%s.snapp.market/api/v%s/";
+    public const    SMS               = 'sms';
+    public const    EMAIL             = 'email';
+    public const    PUSH              = 'push';
+    public const    ASYNC_MODE        = 'async';
+    public const    SYNC_MODE         = 'sync';
+    public const    BLOCKER_PRIORITY  = 'blocker';
+    public const    HIGH_PRIORITY     = 'high';
+    public const    MEDIUM_PRIORITY   = 'medium';
+    public const    LOW_PRIORITY      = 'low';
+    public const    DYNAMIC_STRUCTURE = 'dynamic';
+    public const    STATIC_STRUCTURE  = 'static';
     protected $api_path;
     protected $api_key;
     protected $api_version;

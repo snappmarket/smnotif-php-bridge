@@ -17,7 +17,7 @@ This package developed to use <a href="https://snapp.market">SnappMarket</a> Not
 - `PHP >= 7.2.0`
 - `JSON PHP Extension`
 ### installation
-require package inside your `package.json` file.
+require package inside your `composer.json` file.
 
 `$ composer require snappmarket/smnotif-php-bridge
 `

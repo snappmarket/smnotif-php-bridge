@@ -1,13 +1,18 @@
 <?php
-
+declare(strict_types=1);
 
 namespace Notifier\Sms;
 
-
+use Exception;
+use Notifier\Exceptions\InvalidNotifierTypeException;
 use Notifier\Http\SmsApiCall;
 use Notifier\NotifierApi;
 use Notifier\NotifierInterface;
 
+/**
+ * Class SmsNotifier
+ * @package Notifier\Sms
+ */
 class SmsNotifier extends NotifierApi implements NotifierInterface
 {
     protected $sms_body_structure;
@@ -242,6 +247,14 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
         return $this;
     }
 
+    /**
+     * NotifierApi constructor.
+     * @param string $api_key
+     * @param int $api_version
+     * @param bool $secure
+     * @param string $app_env
+     * @throws InvalidNotifierTypeException
+     */
     public function __construct(string $api_key, int $api_version, bool $secure = null, string $app_env = null)
     {
         if ($secure === null) {
@@ -254,6 +267,9 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
         parent::__construct($api_key, $api_version, $secure, $app_env);
     }
 
+    /**
+     * @return array
+     */
     protected function getPayload()
     {
         $extra = [];
@@ -277,7 +293,7 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function send()
     {
@@ -289,7 +305,7 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function sendByFile()
     {

@@ -1,9 +1,12 @@
 <?php
-
+declare(strict_types=1);
 
 namespace Notifier;
 
-
+/**
+ * Interface NotifierInterface
+ * @package Notifier
+ */
 interface NotifierInterface
 {
     /**

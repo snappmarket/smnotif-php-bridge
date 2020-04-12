@@ -1,12 +1,15 @@
 <?php
-
+declare(strict_types=1);
 
 namespace Notifier\Sms;
 
-
+use Notifier\Exceptions\InvalidNotifierTypeException;
 use Notifier\Http\SmsApiCall;
 use Notifier\NotifierApi;
-
+/**
+ * Class SmsTemplate
+ * @package Notifier\Sms
+ */
 class SmsTemplate extends NotifierApi
 {
     protected $name;
@@ -86,11 +89,22 @@ class SmsTemplate extends NotifierApi
         return $this;
     }
 
+    /**
+     * NotifierApi constructor.
+     * @param string $api_key
+     * @param int $api_version
+     * @param bool $secure
+     * @param string $app_env
+     * @throws InvalidNotifierTypeException
+     */
     public function __construct(string $api_key, int $api_version, bool $secure = true, string $app_env = self::PRODUCTION)
     {
         parent::__construct($api_key, $api_version, $secure, $app_env);
     }
 
+    /**
+     * @return array
+     */
     protected function getPayload(){
         return [
             'name' => $this->getName(),
@@ -100,6 +114,9 @@ class SmsTemplate extends NotifierApi
         ];
     }
 
+    /**
+     * @return string
+     */
     public function registerTemplate()
     {
         $url = $this->getApiPath() . 'send/template';
@@ -109,6 +126,9 @@ class SmsTemplate extends NotifierApi
         return $api_call->execute();
     }
 
+    /**
+     * @return string
+     */
     public function getTemplates()
     {
         $url = $this->getApiPath() . 'send/template';
