@@ -118,6 +118,7 @@ The `NotifierApi` class takes four parameters.
 - `$is_secure` : if true call service with 'https' else calls with 'http'.
 - `$app_env` : The application environment that you are using (including `NotifierApi::PRODUCTION`, `NotifierApi::STAGE`, `NotifierApi::TEST`)
 ```php
+// Static Push Notification
 try {
     $api_token = "5df0d20cd6b9c5df0d20cd6ba3";
     $api_version = 1;
@@ -134,6 +135,54 @@ try {
         ->setBodyStructure(NotifierApi::STATIC_STRUCTURE) // you set it to static in this type
         ->setTitle('This is a test ') // push title
         ->setBody('This is a test message without any variables!!') // push body
+        ->setMessagePageTitle("") // This is the message title you want to save in user phone
+        ->setMessagePageBody("") // This is the message body you want to save in user phone
+        ->setImage("https://m.snapp.market/logo.png") // set push notification image
+        ->setBanner("https://m.snapp.market/logo.png") // set push notification banner
+        ->setSound("default") // set push notification sound
+        ->setModalText("Some text for modal") // if you set it a modal will be open in application
+        ->setDeepLink("") // set Deep Link
+        ->setWebView("") // set Web View
+        ->setWebLink("") // set Web Link
+        ->send();
+    die($response);
+} catch (Exception $e) {
+    throw $e;
+}
+// Dynamic Push Notification
+try {
+    $api_token = "5df0d20cd6b9c5df0d20cd6ba3";
+    $api_version = 1;
+    $is_secure = true;
+    $app_env = NotifierApi::TEST;
+    $notifier = new NotifierApi($api_token,$api_version,$is_secure,$app_env);
+    $push_notifier = $notifier->setType(\Notifier\NotifierApi::PUSH);
+    $response = $push_notifier->setBypassLimitControl(1) // to bypass time limit control (like activation codes)
+        ->setExpireTime('10m') // expires in 10 minutes
+        ->setMode(NotifierApi::ASYNC_MODE) // send notification async or sync
+        ->setReceivers([
+                [
+                    'user_id' => "********",
+                    'push_template_data' => [
+                        'first_name' => 'Alireza',
+                        'last_name' => "jangi",
+                        'code' => "3434"
+                    ]
+                ],
+                [
+                    'number' => "*******",
+                    'push_template_data' => [
+                        'first_name' => 'Another Name',
+                        'last_name' =>  'Another Name',
+                        'code' => '9833'
+                    ]
+                ]
+        ]) // Receivers for static push notification are user IDs
+        ->setPriority(NotifierApi::BLOCKER_PRIORITY) // priority : blocker, high, medium, low
+        ->setProviderCode('20001') // get push provider codes from notification service
+        ->setBodyStructure(NotifierApi::DYNAMIC_STRUCTURE) // you set it to static in this type
+        ->setTitle('Hello {{first_name}} {{last_name}}') // push title
+        ->setBody('Welcome! This is your code : {{code}} ') // push body
         ->setMessagePageTitle("") // This is the message title you want to save in user phone
         ->setMessagePageBody("") // This is the message body you want to save in user phone
         ->setImage("https://m.snapp.market/logo.png") // set push notification image
