@@ -5,7 +5,7 @@ namespace Notifier\Sms;
 
 use Exception;
 use Notifier\Exceptions\InvalidNotifierTypeException;
-use Notifier\Http\SmsApiCall;
+use Notifier\Http\ApiCall;
 use Notifier\NotifierApi;
 use Notifier\NotifierInterface;
 
@@ -300,7 +300,7 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
         $url = $this->getApiPath() . 'send/sms';
         $headers = ['client-token' => $this->getApiKey(), 'content-type' => 'application/json'];
         $payload = json_encode($this->getPayload());
-        $api_call = new SmsApiCall($url, 'POST', $headers, $payload);
+        $api_call = new ApiCall($url, 'POST', $headers, $payload);
         return $api_call->execute();
     }
 
@@ -312,7 +312,7 @@ class SmsNotifier extends NotifierApi implements NotifierInterface
         $url = $this->getApiPath() . 'send/sms/file';
         $headers = ['client-token' => $this->getApiKey()];
         $payload = $this->getPayload();
-        $api_call = new SmsApiCall($url, 'POST', $headers, $payload);
+        $api_call = new ApiCall($url, 'POST', $headers, $payload);
         return $api_call->executeSendFile();
     }
 }

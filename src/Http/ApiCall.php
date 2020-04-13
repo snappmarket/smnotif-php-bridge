@@ -14,10 +14,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Class SmsApiCall
+ * Class ApiCall
  * @package Notifier\Http
  */
-class SmsApiCall
+class ApiCall
 {
     protected $url;
     protected $method;
@@ -26,7 +26,7 @@ class SmsApiCall
     protected $payload;
 
     /**
-     * SmsApiCall constructor.
+     * ApiCall constructor.
      * @param $url
      * @param $method
      * @param $headers

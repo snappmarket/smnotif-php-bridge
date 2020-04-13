@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Notifier\Sms;
 
 use Notifier\Exceptions\InvalidNotifierTypeException;
-use Notifier\Http\SmsApiCall;
+use Notifier\Http\ApiCall;
 use Notifier\NotifierApi;
 /**
  * Class SmsTemplate
@@ -119,10 +119,10 @@ class SmsTemplate extends NotifierApi
      */
     public function registerTemplate()
     {
-        $url = $this->getApiPath() . 'send/template';
+        $url = $this->getApiPath() . 'sms/template';
         $headers = ['client-token'=>$this->getApiKey(),'content-type'=>'application/json'];
         $payload = json_encode($this->getPayload());
-        $api_call = new SmsApiCall($url, 'POST', $headers, $payload);
+        $api_call = new ApiCall($url, 'POST', $headers, $payload);
         return $api_call->execute();
     }
 
@@ -131,10 +131,10 @@ class SmsTemplate extends NotifierApi
      */
     public function getTemplates()
     {
-        $url = $this->getApiPath() . 'send/template';
+        $url = $this->getApiPath() . 'sms/template';
         $headers = ['client-token'=>$this->getApiKey(),'content-type'=>'application/json'];
         $payload = json_encode($this->getPayload());
-        $api_call = new SmsApiCall($url, 'GET', $headers, $payload);
+        $api_call = new ApiCall($url, 'GET', $headers, $payload);
         return $api_call->execute();
     }
 }
