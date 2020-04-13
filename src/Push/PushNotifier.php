@@ -544,7 +544,7 @@ class PushNotifier extends NotifierApi implements PushNotificationInterface
             'mode' => $this->getMode(),
             'provider_code' => $this->getProviderCode(),
             'receivers_file' => $this->getReceiversFile(),
-            'bypass_limit_control' => $this->getBypassLimit()
+            'bypass_limit_control' => $this->getBypassLimitControl()
         ];
         return array_merge($main, $extra);
     }
