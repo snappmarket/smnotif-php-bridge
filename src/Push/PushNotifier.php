@@ -37,7 +37,7 @@ class PushNotifier extends NotifierApi implements PushNotificationInterface
     protected $mode;
     protected $pushTemplateCode;
     protected $startFrom;
-    protected $bypassLimit;
+    protected $bypassLimitControl;
     protected $providerCode;
 
     /**
@@ -460,18 +460,18 @@ class PushNotifier extends NotifierApi implements PushNotificationInterface
     /**
      * @return mixed
      */
-    public function getBypassLimit()
+    public function getBypassLimitControl()
     {
-        return $this->bypassLimit;
+        return $this->bypassLimitControl;
     }
 
     /**
      * @param mixed $bypassLimit
      * @return PushNotifier
      */
-    public function setBypassLimit($bypassLimit): self
+    public function setBypassLimitControl($bypassLimit): self
     {
-        $this->bypassLimit = $bypassLimit;
+        $this->bypassLimitControl = $bypassLimit;
         return $this;
     }
 
@@ -523,8 +523,8 @@ class PushNotifier extends NotifierApi implements PushNotificationInterface
         }
         $main = [
             'receivers' => $this->getReceivers(),
-            'push_title' => base64_encode($this->getTitle()),
-            'push_body' => base64_encode($this->getBody()),
+            'push_title' => base64_encode($this->getTitle() ?? ""),
+            'push_body' => base64_encode($this->getBody() ?? ""),
             'deep_link' => $this->getDeepLink(),
             'web_view' => $this->getWebView(),
             'web_link' => $this->getWebLink(),
@@ -535,8 +535,8 @@ class PushNotifier extends NotifierApi implements PushNotificationInterface
             'show_name' => $this->getShowName(),
             'clear_old_notification' => $this->getClearOldNotification(),
             'time_to_live' => $this->getTimeToLive(),
-            'message_page_title' => base64_encode($this->getMessagePageTitle()),
-            'message_page_body' => base64_encode($this->getMessagePageBody()),
+            'message_page_title' => base64_encode($this->getMessagePageTitle() ?? ""),
+            'message_page_body' => base64_encode($this->getMessagePageBody() ?? ""),
             'expire_time' => $this->getExpireTime(),
             'priority' => $this->getPriority(),
             'body_structure' => $this->getBodyStructure(),
