@@ -15,7 +15,7 @@ class NotifierApi
     public const    STAGE             = "stage";
     public const    TEST              = "test";
     public const    API_PATH          = "%s://notif.snapp.market/api/v%s/";
-    public const    API_PATH_TEST     = "%s://notif.%s.snapp.market/api/v%s/";
+    public const    API_PATH_TEST     = "%s://notif-%s.snapp.market/api/v%s/";
     public const    SMS               = 'sms';
     public const    EMAIL             = 'email';
     public const    PUSH              = 'push';
