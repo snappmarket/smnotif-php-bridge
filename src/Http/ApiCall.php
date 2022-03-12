@@ -36,7 +36,7 @@ class ApiCall
     {
         $this->url = $url;
         $this->method = $method;
-        $this->client = new Client(['timeout' => 10]);
+        $this->client = new Client(['timeout' => 30]);
         $this->headers = $headers;
         $this->payload = $payload;
     }
