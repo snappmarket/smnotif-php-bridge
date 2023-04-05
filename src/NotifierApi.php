@@ -118,10 +118,11 @@ class NotifierApi
      * @param string $api_key
      * @param int $api_version
      * @param bool $secure
-     * @param string $app_env
+     * @param string|null $app_env
+     * @param null $domain
      * @throws InvalidNotifierTypeException
      */
-    public function __construct(string $api_key, int $api_version, bool $secure = null, string $app_env = null)
+    public function __construct(string $api_key, int $api_version, bool $secure = null, string $app_env = null, $domain = null)
     {
         if ($secure === null) {
             $secure = true;
@@ -138,15 +139,18 @@ class NotifierApi
         }else{
             $this->setAppEnv($app_env);
         }
-        $this->setApiPath($this->generateApiPath());
+        $this->setApiPath($this->generateApiPath($domain));
     }
 
     /**
      * @return string
      */
-    protected function generateApiPath(){
+    protected function generateApiPath($domain){
         $secure = $this->generateApiSecure();
         $version = $this->getApiVersion();
+        if ($domain) {
+            return sprintf(rtrim($domain, '/') . '/api/v%s', $version);
+        }
         switch ($this->getAppEnv()){
             case self::PRODUCTION:
                 return sprintf(self::API_PATH,$secure,$version);
