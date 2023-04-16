@@ -32,6 +32,10 @@ class NotifierApi
     protected $api_version;
     protected $app_env;
     protected $secure;
+    /**
+     * @var null|string
+     */
+    private $domain;
 
     /**
      * @return mixed
@@ -140,6 +144,7 @@ class NotifierApi
             $this->setAppEnv($app_env);
         }
         $this->setApiPath($this->generateApiPath($domain));
+        $this->domain = $domain;
     }
 
     /**
@@ -187,7 +192,7 @@ class NotifierApi
          * @var NotifierInterface $className
          */
         if (class_exists($className)) {
-            return new $className($this->getApiKey(),$this->getApiVersion(),$this->getSecure(),$this->getAppEnv());
+            return new $className($this->getApiKey(),$this->getApiVersion(),$this->getSecure(),$this->getAppEnv(), $this->domain);
         } else {
             throw new InvalidNotifierTypeException("Notifier class not found");
         }
