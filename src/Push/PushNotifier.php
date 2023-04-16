@@ -498,10 +498,11 @@ class PushNotifier extends NotifierApi implements PushNotificationInterface
      * @param string $api_key
      * @param int $api_version
      * @param bool $secure
-     * @param string $app_env
+     * @param string|null $app_env
+     * @param null $domain
      * @throws InvalidNotifierTypeException
      */
-    public function __construct(string $api_key, int $api_version, bool $secure = null, string $app_env = null)
+    public function __construct(string $api_key, int $api_version, bool $secure = null, string $app_env = null, $domain = null)
     {
         if ($secure === null) {
             $secure = true;
@@ -509,7 +510,7 @@ class PushNotifier extends NotifierApi implements PushNotificationInterface
         if ($app_env === null) {
             $app_env = self::PRODUCTION;
         }
-        parent::__construct($api_key, $api_version, $secure, $app_env);
+        parent::__construct($api_key, $api_version, $secure, $app_env, $domain);
     }
 
     /**
