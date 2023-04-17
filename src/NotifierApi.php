@@ -154,7 +154,7 @@ class NotifierApi
         $secure = $this->generateApiSecure();
         $version = $this->getApiVersion();
         if ($domain) {
-            return sprintf(rtrim($domain, '/') . '/api/v%s', $version);
+            return sprintf(rtrim($domain, '/') . '/api/v%s/', $version);
         }
         switch ($this->getAppEnv()){
             case self::PRODUCTION:
